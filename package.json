@@ -1,0 +1,27 @@
+{
+  "name": "caderno-surfista",
+  "version": "1.0.0",
+  "description": "TypeScript Node Js API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otavioaraujo08/caderno-surfista.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "api"
+  ],
+  "author": "Otávio Araujo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/otavioaraujo08/caderno-surfista/issues"
+  },
+  "homepage": "https://github.com/otavioaraujo08/caderno-surfista#readme",
+  "devDependencies": {
+    "typescript": "^5.0.3"
+  }
+}
