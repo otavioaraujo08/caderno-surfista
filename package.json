@@ -7,6 +7,7 @@
         "build": "tsc",
         "start": "npm run build && node dist/src/index.js",
         "lint": "eslint ./src ./test --ext .ts",
+        "start:dev": "ts-node-dev './src/index.ts'",
         "lint:fix": "eslint ./src ./test --ext .ts --fix",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -33,6 +34,7 @@
         "eslint": "^8.37.0",
         "i": "^0.3.7",
         "npm": "^9.6.4",
+        "ts-node-dev": "^2.0.0",
         "typescript": "^5.0.3"
     },
     "dependencies": {
