@@ -1,16 +1,14 @@
-import supertest from "supertest";
-
 // Criando os testes iniciais para a rota /forecast, esperando que o status seja 200 e que o body seja do tipo Forecast
 describe("Beach forecast functional tests", () => {
     it("should return a forecast with just a few times", async () => {
         // Vamos testar a rota /forecast
-        const { body, status } = await supertest(app).get("/forecast");
+        const { body, status } = await global.testRequest.get("/forecast");
 
         // Esperamos que o status da requisição seja 200
         expect(status).toBe(200);
 
         // Esperamos que o body seja do tipo Forecast
-        expect(body).toBe([
+        expect(body).toEqual([
             {
                 time: "2020-04-26T00:00:00+00:00",
                 forecast: [
