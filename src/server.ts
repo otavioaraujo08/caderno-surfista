@@ -1,8 +1,8 @@
-import "./utils/module-alias";
-import bodyParser from "body-parser";
-import { Server } from "@overnightjs/core";
-import { ForecastController } from "./controllers/forecast";
-import { Application } from "express";
+import './utils/module-alias';
+import bodyParser from 'body-parser';
+import { Server } from '@overnightjs/core';
+import { ForecastController } from './controllers/forecast';
+import { Application } from 'express';
 
 // Definindo nosso servidor
 export class SetupServer extends Server {

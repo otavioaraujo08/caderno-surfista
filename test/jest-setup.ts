@@ -1,5 +1,5 @@
-import { SetupServer } from "@src/server";
-import supertest from "supertest";
+import { SetupServer } from '@src/server';
+import supertest from 'supertest';
 
 // Antes de cada teste, vamos rodar essa função
 beforeAll(() => {
