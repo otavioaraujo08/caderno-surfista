@@ -15,6 +15,7 @@ export interface StormGlassPoint {
     readonly windSpeed: StormGlassPointSource;
 }
 
+// Resposra da api externa
 export interface StormGlassForecastResponse {
     hours: StormGlassPoint[];
 }
@@ -73,6 +74,7 @@ export class StormGlass {
             }));
     }
 
+    // Validando se os valores estão presentes, caso não estejam, o ponto não será considerado
     private isValidPoint(point: Partial<StormGlassPoint>): boolean {
         return !!(
             point.time &&
