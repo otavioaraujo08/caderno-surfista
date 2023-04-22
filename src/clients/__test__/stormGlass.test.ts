@@ -27,7 +27,6 @@ describe('StormGlass client', () => {
         expect(response).toEqual(stormGlassNormalized3HoursFixture);
     });
 
-    // Dados que não possuem todas as chaves, devem ser excluidos
     it('should exclude incomplete data points', async () => {
         const incompleteResponse = {
             hours: [
@@ -50,5 +49,15 @@ describe('StormGlass client', () => {
 
         // Espero que a resposta seja um array vazio
         expect(response).toEqual([]);
+    });
+
+    it('should get a generic error from StormGlass service when the request fail before reaching the service', async () => {
+        mockedAxios.get.mockRejectedValue({ message: 'Network Error' });
+
+        const stormGlass = new StormGlass(mockedAxios);
+
+        await expect(stormGlass.fetchPoints(lat, lng)).rejects.toThrow(
+            'Unexpected error when trying to communicate to StormGlass: Network Error'
+        );
     });
 });
