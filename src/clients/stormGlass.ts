@@ -59,16 +59,11 @@ export class StormGlass {
                 }
             );
             return this.normalizeResponse(response.data);
-        } catch (err) {
-            const axiosError = err as AxiosError;
-            if (
-                axiosError instanceof Error &&
-                axiosError.response &&
-                axiosError.response.status
-            ) {
+        } catch (err: any) {
+            if (HTTPUtil.Requets.isRequestError(err)) {
                 throw new StormGlassResponseError(
-                    `Error: ${JSON.stringify(axiosError.response.data)} Code: ${
-                        axiosError.response.status
+                    `Error: ${JSON.stringify(err.response.data)} Code: ${
+                        err.response.status
                     }`
                 );
             }

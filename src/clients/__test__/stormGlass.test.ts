@@ -3,14 +3,16 @@ import stormGlassWeather3HoursFixture from '@test/fixtures/stormglass_weather_3_
 import stormGlassNormalized3HoursFixture from '@test/fixtures/stormglass_normalized_response_3_hours.json';
 import * as HTTPUtil from '@src/utils/request';
 
-// Limpa o cache do módulo
 jest.mock('@src/utils/request');
 
 describe('StormGlass client', () => {
-    // Criando um mock do axios, com os tipos do axios, para forçar o typescript a inferir o tipo do meu dadod
+    const MockedRequestClass = HTTPUtil.Requets as jest.Mocked<
+        typeof HTTPUtil.Requets
+    >;
+
     const mockedRequest =
         new HTTPUtil.Requets() as jest.Mocked<HTTPUtil.Requets>;
-    // Definindo o mock da requisição
+
     const lat = -33.792726;
     const lng = 151.289824;
 
@@ -65,18 +67,14 @@ describe('StormGlass client', () => {
     });
 
     it('should get an StormGlassResponseError when the StormGlass service responds with error', async () => {
-        class FakeAxiosError extends Error {
-            constructor(public response: object) {
-                super();
-            }
-        }
+        MockedRequestClass.isRequestError.mockReturnValue(true);
 
-        mockedRequest.get.mockRejectedValue(
-            new FakeAxiosError({
+        mockedRequest.get.mockRejectedValue({
+            response: {
                 status: 429,
                 data: { errors: ['Rate Limit reached'] },
-            })
-        );
+            },
+        });
 
         const stormGlass = new StormGlass(mockedRequest);
 
