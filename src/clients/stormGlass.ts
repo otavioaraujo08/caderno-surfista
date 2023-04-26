@@ -4,8 +4,9 @@ import {
     StormGlassPoint,
 } from '@src/interfaces/IStormGlass';
 import { InternalError } from '@src/utils/errors/internal-error';
-import axios, { AxiosError, AxiosStatic } from 'axios';
+import { AxiosError } from 'axios';
 import config, { IConfig } from 'config';
+import * as HTTPUtil from '@src/utils/request';
 
 export class StormGlassUnexpectedResponseError extends InternalError {
     constructor(message: string) {
@@ -38,7 +39,7 @@ export class StormGlass {
         'swellDirection,swellHeight,swellPeriod,waveDirection,waveHeight,windDirection,windSpeed';
     readonly stormGlassAPISource = 'noaa';
 
-    constructor(protected request: AxiosStatic = axios) {}
+    constructor(protected request = new HTTPUtil.Requets()) {}
 
     public async fetchPoints(
         lat: number,
