@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RequetsConfig extends AxiosRequestConfig {}
@@ -13,5 +13,12 @@ export class Requets {
         config: RequetsConfig = {}
     ): Promise<Response<T>> {
         return this.request.get<T, Response<T>>(url, config);
+    }
+
+    public static isRequestError(error: Error): boolean {
+        return !!(
+            (error as AxiosError).response &&
+            (error as AxiosError).response?.status
+        );
     }
 }
