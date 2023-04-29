@@ -1,3 +1,5 @@
+import { ForecastPoint } from './IStormGlass';
+
 export enum BeachPosition {
     S = 'S',
     E = 'E',
@@ -12,3 +14,5 @@ export interface Beach {
     lng: number;
     user: string;
 }
+
+export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
