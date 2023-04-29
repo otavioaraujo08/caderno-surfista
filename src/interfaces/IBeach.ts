@@ -4,3 +4,11 @@ export enum BeachPosition {
     W = 'W',
     N = 'N',
 }
+
+export interface Beach {
+    name: string;
+    position: BeachPosition;
+    lat: number;
+    lng: number;
+    user: string;
+}
