@@ -37,6 +37,11 @@ export class SetupServer extends Server {
         await database.connect();
     }
 
+    // Definindo o método para fechar as funcionalidades do servidor
+    public async close(): Promise<void> {
+        await database.close();
+    }
+
     // Tornando o App público
     public getApp(): Application {
         return this.app;
