@@ -14,3 +14,4 @@ beforeAll(async () => {
 });
 
 // Responsável por configurar o ambiente de testes do Jest
+afterAll(async () => await server.close());
