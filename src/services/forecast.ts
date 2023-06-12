@@ -1,5 +1,6 @@
 import { StormGlass } from '@src/clients/stormGlass';
 import { Beach, BeachForecast } from '@src/interfaces/IBeach';
+import { ForecastPoint } from '@src/interfaces/IStormGlass';
 import { TimeForecast } from '@src/interfaces/ITime';
 import { InternalError } from '@src/utils/errors/internal-error';
 
@@ -27,16 +28,7 @@ export class Forecast {
             );
 
             // Preenchendo o array de BeachForecast com os dados de cada praia
-            const enrichedBeachData = points.map((e) => ({
-                ...{
-                    lat: beach.lat,
-                    lng: beach.lng,
-                    name: beach.name,
-                    position: beach.position,
-                    rating: 1,
-                },
-                ...e,
-            }));
+            const enrichedBeachData = this.enrichBeachData(points, beach);
 
             // Adicionando os dados de cada praia ao array de BeachForecast
             pointsWithCorrectSources.push(...enrichedBeachData);
@@ -46,6 +38,19 @@ export class Forecast {
     } catch (error: any) {
         throw new ForecastProcessingInternalError(`Error processing forecast for beaches: ${error.message}`);
     }}
+
+    private enrichBeachData(points: ForecastPoint[], beach: Beach): BeachForecast[] {
+        return points.map((e) => ({
+            ...{
+                lat: beach.lat,
+                lng: beach.lng,
+                name: beach.name,
+                position: beach.position,
+                rating: 1,
+            },
+            ...e,
+        }));
+    }
 
     private mapForecastByTime(forecast: BeachForecast[]): TimeForecast[] {
         const forecastByTime: TimeForecast[] = [];
