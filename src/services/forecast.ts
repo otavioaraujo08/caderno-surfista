@@ -1,6 +1,13 @@
 import { StormGlass } from '@src/clients/stormGlass';
 import { Beach, BeachForecast } from '@src/interfaces/IBeach';
 import { TimeForecast } from '@src/interfaces/ITime';
+import { InternalError } from '@src/utils/errors/internal-error';
+
+export class ForecastProcessingInternalError extends InternalError {
+    constructor(message: string) {
+        super(`Unexpected error during the forecast processing: ${message}`);
+    }
+}
 
 export class Forecast {
     constructor(protected stormGlass = new StormGlass()) {}
@@ -8,6 +15,7 @@ export class Forecast {
     public async processForecastForBeaches(
         beaches: Beach[]
     ): Promise<TimeForecast[]> {
+        try {
         // Criando um array de BeachForecast
         const pointsWithCorrectSources = [];
 
@@ -35,7 +43,9 @@ export class Forecast {
         }
 
         return this.mapForecastByTime(pointsWithCorrectSources);
-    }
+    } catch (error: any) {
+        throw new ForecastProcessingInternalError(`Error processing forecast for beaches: ${error.message}`);
+    }}
 
     private mapForecastByTime(forecast: BeachForecast[]): TimeForecast[] {
         const forecastByTime: TimeForecast[] = [];
