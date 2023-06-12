@@ -1,11 +1,13 @@
 import { SetupServer } from '@src/server';
 import supertest from 'supertest';
 
+let server: SetupServer;
+
 // Antes de cada teste, vamos rodar essa função
-beforeAll(() => {
+beforeAll(async () => {
     // Iniciando o servidor
-    const server = new SetupServer();
-    server.init();
+    server = new SetupServer();
+    await server.init();
 
     // Inicializando o supertest
     global.testRequest = supertest(server.getApp());
