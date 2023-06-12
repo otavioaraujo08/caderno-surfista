@@ -6,11 +6,13 @@ import { Forecast } from '../forecast';
 jest.mock('@src/clients/stormGlass');
 
 describe('Forecast Service', () => {
+    const mockedStormGlassService = new StormGlass() as jest.Mocked<StormGlass>;
+
     it('should return the forecast for a list of beaches', async () => {
         // Mockando a classe StormGlass, para que não seja feita a requisição para a API externa
-        StormGlass.prototype.fetchPoints = jest
-            .fn()
-            .mockResolvedValue(stormGlassNormalized3HoursFixture);
+        mockedStormGlassService.fetchPoints.mockResolvedValue(
+            stormGlassNormalized3HoursFixture
+        );
 
         const beaches: Beach[] = [
             {
@@ -85,7 +87,7 @@ describe('Forecast Service', () => {
             },
           ];
 
-        const forecast = new Forecast(new StormGlass());
+        const forecast = new Forecast(mockedStormGlassService);
         const beachesWithRating = await forecast.processForecastForBeaches(
             beaches
         );
