@@ -95,4 +95,12 @@ describe('Forecast Service', () => {
         // Espera que o resultado seja igual ao esperado
         expect(beachesWithRating).toEqual(expectedResponse);
     });
+
+    it("Should return an empty list when the beaches arrays is empty", async () => {
+        const forecast =  new Forecast()
+        const response = await forecast.processForecastForBeaches([])
+
+        // Espera-se uma lista vazia
+        expect(response).toEqual([])
+    })
 });
