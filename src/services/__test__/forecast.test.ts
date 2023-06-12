@@ -1,28 +1,27 @@
 import { StormGlass } from '@src/clients/stormGlass';
 import { Beach, BeachPosition } from '@src/interfaces/IBeach';
 import stormGlassNormalized3HoursFixture from '@test/fixtures/stormglass_normalized_response_3_hours.json';
-import { Forecast } from '../forecast';
+import { Forecast, ForecastProcessingInternalError } from '../forecast';
 
 jest.mock('@src/clients/stormGlass');
 
 describe('Forecast Service', () => {
     const mockedStormGlassService = new StormGlass() as jest.Mocked<StormGlass>;
+    const beaches: Beach[] = [
+        {
+            lat: -33.792726,
+            lng: 151.289824,
+            name: 'Manly',
+            position: BeachPosition.E,
+            user: 'some-id',
+        },
+    ];
 
     it('should return the forecast for a list of beaches', async () => {
         // Mockando a classe StormGlass, para que não seja feita a requisição para a API externa
         mockedStormGlassService.fetchPoints.mockResolvedValue(
             stormGlassNormalized3HoursFixture
         );
-
-        const beaches: Beach[] = [
-            {
-                lat: -33.792726,
-                lng: 151.289824,
-                name: 'Manly',
-                position: BeachPosition.E,
-                user: 'some-id',
-            },
-        ];
 
         const expectedResponse = [
             {
@@ -103,4 +102,16 @@ describe('Forecast Service', () => {
         // Espera-se uma lista vazia
         expect(response).toEqual([])
     })
-});
+
+    it("Should throw internal processing error when something goes wrong during the rating process", async () => {
+        // Retorno da função fetchPoints será um erro
+        mockedStormGlassService.fetchPoints.mockRejectedValue(
+            'Error fetching data'
+        )
+
+        const forecast = new Forecast(mockedStormGlassService)
+
+        // Espera-se que a função processForecastForBeaches lance um erro
+        await expect(forecast.processForecastForBeaches(beaches)).rejects.toThrow(ForecastProcessingInternalError)
+    })
+    });
