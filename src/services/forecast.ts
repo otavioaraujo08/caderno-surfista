@@ -17,29 +17,35 @@ export class Forecast {
         beaches: Beach[]
     ): Promise<TimeForecast[]> {
         try {
-        // Criando um array de BeachForecast
-        const pointsWithCorrectSources = [];
+            // Criando um array de BeachForecast
+            const pointsWithCorrectSources = [];
 
-        for (const beach of beaches) {
-            // Buscando os dados de cada praia
-            const points = await this.stormGlass.fetchPoints(
-                beach.lat,
-                beach.lng
+            for (const beach of beaches) {
+                // Buscando os dados de cada praia
+                const points = await this.stormGlass.fetchPoints(
+                    beach.lat,
+                    beach.lng
+                );
+
+                // Preenchendo o array de BeachForecast com os dados de cada praia
+                const enrichedBeachData = this.enrichBeachData(points, beach);
+
+                // Adicionando os dados de cada praia ao array de BeachForecast
+                pointsWithCorrectSources.push(...enrichedBeachData);
+            }
+
+            return this.mapForecastByTime(pointsWithCorrectSources);
+        } catch (error: any) {
+            throw new ForecastProcessingInternalError(
+                `Error processing forecast for beaches: ${error.message}`
             );
-
-            // Preenchendo o array de BeachForecast com os dados de cada praia
-            const enrichedBeachData = this.enrichBeachData(points, beach);
-
-            // Adicionando os dados de cada praia ao array de BeachForecast
-            pointsWithCorrectSources.push(...enrichedBeachData);
         }
+    }
 
-        return this.mapForecastByTime(pointsWithCorrectSources);
-    } catch (error: any) {
-        throw new ForecastProcessingInternalError(`Error processing forecast for beaches: ${error.message}`);
-    }}
-
-    private enrichBeachData(points: ForecastPoint[], beach: Beach): BeachForecast[] {
+    private enrichBeachData(
+        points: ForecastPoint[],
+        beach: Beach
+    ): BeachForecast[] {
         return points.map((e) => ({
             ...{
                 lat: beach.lat,
@@ -55,14 +61,16 @@ export class Forecast {
     private mapForecastByTime(forecast: BeachForecast[]): TimeForecast[] {
         const forecastByTime: TimeForecast[] = [];
 
-        for(const point of forecast) {
+        for (const point of forecast) {
             const timePoint = forecastByTime.find((f) => f.time === point.time);
 
             // Se ja existir um timePoint, adiciona o point ao array de forecast, senão cria um novo timePoint
-            timePoint ? timePoint.forecast.push(point) : forecastByTime.push({
-                time: point.time,
-                forecast: [point]
-            })
+            timePoint
+                ? timePoint.forecast.push(point)
+                : forecastByTime.push({
+                      time: point.time,
+                      forecast: [point],
+                  });
         }
 
         return forecastByTime;
