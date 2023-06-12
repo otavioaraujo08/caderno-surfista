@@ -4,6 +4,7 @@ import { Server } from '@overnightjs/core';
 import { ForecastController } from './controllers/forecast';
 import { Application } from 'express';
 import * as database from '@src/database';
+import { BeachesController } from './controllers/beaches';
 
 // Definindo nosso servidor
 export class SetupServer extends Server {
@@ -29,7 +30,8 @@ export class SetupServer extends Server {
     // Definindo os controllers
     private setupControllers(): void {
         const forecastController = new ForecastController();
-        this.addControllers([forecastController]);
+        const beachesController = new BeachesController();
+        this.addControllers([forecastController, beachesController]);
     }
 
     // Definindo o método para iniciar o banco de dados
