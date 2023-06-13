@@ -2,8 +2,8 @@ describe('Beaches functional tests', () => {
     describe('When creating a beach', () => {
         it('should create a beach with success', async () => {
             const newBeach = {
-                lat: '-1.6161877972406482',
-                lng: '-48.812844829117886',
+                lat: -1.6161877972406482,
+                lng: -48.812844829117886,
                 name: 'Beja',
                 position: 'N',
             };
