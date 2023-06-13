@@ -1,3 +1,4 @@
+import { Document } from 'mongoose';
 import { ForecastPoint } from './IStormGlass';
 
 export enum BeachPosition {
@@ -8,6 +9,7 @@ export enum BeachPosition {
 }
 
 export interface Beach {
+    _id?: string;
     name: string;
     position: BeachPosition;
     lat: number;
@@ -16,3 +18,5 @@ export interface Beach {
 }
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
+
+export interface BeachModel extends Omit<Beach, '_id'>, Document {}
