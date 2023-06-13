@@ -18,14 +18,13 @@ describe('Users functional test', () => {
                 .post('/users')
                 .send(newUser);
 
-            // Esperamos que o status retornado seja 201 (Created), e que o body seja um objeto contendo os campos de newUser
             expect(response.status).toBe(201);
             expect(response.body).toEqual(expect.objectContaining(newUser));
         });
 
-        it('should throw a error when there is a validation error', async () => {
+        it('Should return 422 when there is a validation error', async () => {
             const newUser = {
-                email: 'otavioaraujo@mail.com',
+                email: 'matheussilva@mail.com',
                 password: '1234',
             };
 
@@ -33,10 +32,29 @@ describe('Users functional test', () => {
                 .post('/users')
                 .send(newUser);
 
-            // Esperamos que o status retornado seja 201 (Created), e que o body seja um objeto contendo os campos de newUser
-            expect(response.status).toBe(400);
+            expect(response.status).toBe(422);
             expect(response.body).toEqual({
+                code: 422,
                 error: 'User validation failed: name: Path `name` is required.',
+            });
+        });
+
+        it('Should return 409 when the email already exists', async () => {
+            const newUser = {
+                name: 'Otavio Araujo',
+                email: 'otavioaraujo@mail.com',
+                password: '1234',
+            };
+
+            await global.testRequest.post('/users').send(newUser);
+            const response = await global.testRequest
+                .post('/users')
+                .send(newUser);
+
+            expect(response.status).toBe(409);
+            expect(response.body).toEqual({
+                code: 409,
+                error: 'User validation failed: email: already exists in the database.',
             });
         });
     });
