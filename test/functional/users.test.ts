@@ -53,7 +53,7 @@ describe('Users functional test', () => {
 
         it('Should return 409 when the email already exists', async () => {
             const newUser = {
-                name: 'Otavio Araujo',
+                name: 'Marcos Aguiar',
                 email: 'otavioaraujo@mail.com',
                 password: '1234',
             };
