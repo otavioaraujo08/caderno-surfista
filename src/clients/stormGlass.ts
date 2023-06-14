@@ -4,7 +4,6 @@ import {
     StormGlassPoint,
 } from '@src/interfaces/IStormGlass';
 import { InternalError } from '@src/utils/errors/internal-error';
-import { AxiosError } from 'axios';
 import config, { IConfig } from 'config';
 import * as HTTPUtil from '@src/utils/request';
 
