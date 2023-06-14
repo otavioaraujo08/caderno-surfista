@@ -3,6 +3,10 @@
         "database": {
             "mongoUrl": "mongodb://localhost:27017/beach-forecast"
         },
+        "auth": {
+            "key": "some-secret-key",
+            "tokenExpiresIn": 200000
+        },
         "resources": {
             "StormGlass": {
                 "apiUrl": "https://api.stormglass.io/v2",
