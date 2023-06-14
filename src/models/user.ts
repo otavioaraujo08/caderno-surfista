@@ -45,4 +45,12 @@ export async function hashPassword(
     return bcrypt.hash(password, salt);
 }
 
+// Criando uma função para comparar a senha dos usuário
+export async function comparePassword(
+    password: string,
+    hashedPassword: string
+): Promise<boolean> {
+    return await bcrypt.compare(password, hashedPassword);
+}
+
 export const User: Model<UserModel> = mongoose.model('User', schema);
