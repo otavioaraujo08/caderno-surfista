@@ -102,6 +102,25 @@ describe('Users functional test', () => {
 
                 expect(response.status).toBe(401);
             });
+
+            it('Should return UNAUTHORIZED if the user is found but the password does not match', async () => {
+                const newUser = {
+                    name: 'Marcelos',
+                    email: 'marcelos@mail.com',
+                    password: '1234',
+                };
+
+                await new User(newUser).save();
+
+                const response = await global.testRequest
+                    .post('/users/authenticate')
+                    .send({
+                        email: newUser.email,
+                        password: '4321',
+                    });
+
+                expect(response.status).toBe(401);
+            });
         });
     });
 });
