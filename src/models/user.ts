@@ -1,5 +1,6 @@
 import { UserModel } from '@src/interfaces/IUser';
 import mongoose, { Model } from 'mongoose';
+import bcrypt from 'bcrypt';
 
 export enum CUSTOM_VALIDATION {
     DUPLICATED = 'DUPLICATED',
@@ -35,5 +36,13 @@ schema.path('email').validate(
     'already exists in the database.',
     CUSTOM_VALIDATION.DUPLICATED
 );
+
+// Criando uma função para incriptar a senha do usuário
+export async function hashPassword(
+    password: string,
+    salt = 10
+): Promise<string> {
+    return bcrypt.hash(password, salt);
+}
 
 export const User: Model<UserModel> = mongoose.model('User', schema);
