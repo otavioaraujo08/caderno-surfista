@@ -36,9 +36,7 @@ export class Forecast {
 
             return this.mapForecastByTime(pointsWithCorrectSources);
         } catch (error: any) {
-            throw new ForecastProcessingInternalError(
-                `Error processing forecast for beaches: ${error.message}`
-            );
+            throw new ForecastProcessingInternalError((error as Error).message);
         }
     }
 
