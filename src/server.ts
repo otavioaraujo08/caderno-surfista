@@ -55,4 +55,13 @@ export class SetupServer extends Server {
     public getApp(): Application {
         return this.app;
     }
+
+    public start(): void {
+        this.app.listen(this.port, () => {
+            console.log('******************************');
+            console.log(`        SERVER STARTED        `);
+            console.log(`    Listening on port ${this.port} `);
+            console.log('******************************');
+        });
+    }
 }
