@@ -1,8 +1,23 @@
 import { Beach } from '@src/models/beach';
+import { User } from '@src/models/user';
+import AuthService from '@src/services/auth';
 
 describe('Beaches functional tests', () => {
-    // Antes de cada teste, limpar o banco de dados
+    const defaultUser = {
+        name: 'Otavio Araujo',
+        email: 'otavioaraujo@mail.com',
+        password: 1234,
+    };
+    let token: string;
+    // Antes de todos os testes, limpar o banco de praias
     beforeAll(async () => await Beach.deleteMany({}));
+    // Antes de cada teste, limpar o banco de dados
+    beforeEach(async () => {
+        await Beach.deleteMany({});
+        await User.deleteMany({});
+        const user = await new User(defaultUser).save();
+        token = AuthService.generateToken(user.toJSON());
+    });
 
     describe('When creating a beach', () => {
         it('should create a beach with success', async () => {
@@ -15,6 +30,7 @@ describe('Beaches functional tests', () => {
 
             const response = await global.testRequest
                 .post('/beaches')
+                .set({ 'x-access-token': token })
                 .send(newBeach);
 
             // Esperamos que a resposta seja 201 e que o corpo da resposta seja igual ao newBeach
@@ -32,6 +48,7 @@ describe('Beaches functional tests', () => {
 
             const response = await global.testRequest
                 .post('/beaches')
+                .set({ 'x-access-token': token })
                 .send(newBeach);
 
             // Esperamos que a resposta seja 422 e que seja
