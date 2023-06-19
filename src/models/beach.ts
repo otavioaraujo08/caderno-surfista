@@ -1,5 +1,5 @@
 import { Beach as IBeach } from '@src/interfaces/IBeach';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
 
 // Definindo o schema do banco de dados
 const schema = new mongoose.Schema<IBeach>(
@@ -8,6 +8,7 @@ const schema = new mongoose.Schema<IBeach>(
         lng: { type: Number, required: true },
         name: { type: String, required: true },
         position: { type: String, required: true },
+        user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     },
     {
         // Transformando em JSON
