@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from 'config';
+import { DecodeUser } from '@src/interfaces/IUser';
 
 export default class AuthService {
     // Criando uma função para incriptar a senha do usuário
@@ -27,5 +28,9 @@ export default class AuthService {
         return jwt.sign(payload, key, {
             expiresIn: expiresIn,
         });
+    }
+
+    public static decodeToken(token: string): DecodeUser {
+        return jwt.verify(token, config.get('App.auth.key')) as DecodeUser;
     }
 }
