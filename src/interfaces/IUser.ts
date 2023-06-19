@@ -8,3 +8,7 @@ export interface User {
 }
 
 export interface UserModel extends Omit<User, '_id'>, Document {}
+
+export interface DecodeUser extends Omit<User, '_id'> {
+    id: string;
+}
