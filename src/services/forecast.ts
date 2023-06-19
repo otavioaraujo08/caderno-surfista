@@ -35,7 +35,7 @@ export class Forecast {
             }
 
             return this.mapForecastByTime(pointsWithCorrectSources);
-        } catch (error: any) {
+        } catch (error) {
             throw new ForecastProcessingInternalError((error as Error).message);
         }
     }
