@@ -6,6 +6,7 @@ import { Application } from 'express';
 import * as database from '@src/database';
 import { BeachesController } from './controllers/beaches';
 import { UsersController } from './controllers/users';
+import logger from './logger';
 
 // Definindo nosso servidor
 export class SetupServer extends Server {
@@ -58,10 +59,10 @@ export class SetupServer extends Server {
 
     public start(): void {
         this.app.listen(this.port, () => {
-            console.log('******************************');
-            console.log(`        SERVER STARTED        `);
-            console.log(`    Listening on port ${this.port} `);
-            console.log('******************************');
+            logger.info('******************************');
+            logger.info(`        SERVER STARTED        `);
+            logger.info(`    Listening on port ${this.port} `);
+            logger.info('******************************');
         });
     }
 }
