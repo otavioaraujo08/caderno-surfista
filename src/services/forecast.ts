@@ -3,6 +3,7 @@ import { Beach, BeachForecast } from '@src/interfaces/IBeach';
 import { ForecastPoint } from '@src/interfaces/IStormGlass';
 import { TimeForecast } from '@src/interfaces/ITime';
 import { InternalError } from '@src/utils/errors/internal-error';
+import logger from '@src/logger';
 
 export class ForecastProcessingInternalError extends InternalError {
     constructor(message: string) {
@@ -19,6 +20,7 @@ export class Forecast {
         try {
             // Criando um array de BeachForecast
             const pointsWithCorrectSources = [];
+            logger.info(`Preparing the forecast for ${beaches.length} beaches`);
 
             for (const beach of beaches) {
                 // Buscando os dados de cada praia
@@ -36,6 +38,7 @@ export class Forecast {
 
             return this.mapForecastByTime(pointsWithCorrectSources);
         } catch (error) {
+            logger.error(error);
             throw new ForecastProcessingInternalError((error as Error).message);
         }
     }
