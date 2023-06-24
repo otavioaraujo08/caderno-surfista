@@ -2,21 +2,30 @@ import { Response } from 'express';
 import mongoose from 'mongoose';
 import { CUSTOM_VALIDATION } from '@src/models/user';
 import logger from '@src/logger';
+import ApiError from '@src/utils/errors/api-error';
+import { APIError } from '@src/interfaces/IError';
 
 export abstract class BaseController {
     protected sendCreatedUpdateErrorResponse(
-        res: Response,
+        response: Response,
         error: unknown
     ): void {
         if (error instanceof mongoose.Error.ValidationError) {
             const clientErrors = this.handleClientErrors(error);
-            res.status(clientErrors.code).send({
-                code: clientErrors.code,
-                error: clientErrors.error,
-            });
+            response.status(clientErrors.code).send(
+                ApiError.format({
+                    code: clientErrors.code,
+                    message: clientErrors.error,
+                })
+            );
         } else {
             logger.error(error);
-            res.status(500).send({ code: 500, error: 'Something went wrong!' });
+            response.status(500).send(
+                ApiError.format({
+                    code: 500,
+                    message: 'Something went wrong!',
+                })
+            );
         }
     }
 
