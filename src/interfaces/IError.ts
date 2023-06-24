@@ -5,3 +5,7 @@ export interface APIError {
     description?: string;
     documentation?: string;
 }
+
+export interface APIErrorResponse extends Omit<APIError, 'codeAsString'> {
+    error: string;
+}
