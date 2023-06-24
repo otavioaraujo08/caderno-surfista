@@ -43,4 +43,11 @@ export abstract class BaseController {
         }
         return { code: 422, error: error.message };
     }
+
+    protected sendErrorResponse(
+        response: Response,
+        apiError: APIError
+    ): Response {
+        return response.status(apiError.code).send(ApiError.format(apiError));
+    }
 }
