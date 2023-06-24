@@ -54,7 +54,10 @@ describe('Beaches functional tests', () => {
             // Esperamos que a resposta seja 422 e que seja
             expect(response.status).toBe(422);
             expect(response.body).toEqual({
-                error: 'Beach validation failed: lat: Cast to Number failed for value "Invalid String" (type string) at path "lat"',
+                code: 422,
+                error: 'Unprocessable Entity',
+                message:
+                    'Beach validation failed: lat: Cast to Number failed for value "Invalid String" (type string) at path "lat"',
             });
         });
     });
