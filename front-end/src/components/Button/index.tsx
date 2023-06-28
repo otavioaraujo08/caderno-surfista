@@ -1,10 +1,22 @@
+import './styles.css';
+import Button from '@mui/material/Button';
 interface ButtonProps {
     label: string;
     onClick: () => void;
+    style?: React.CSSProperties;
 }
 
-export const Button = (Props: ButtonProps) => {
-    const { label, onClick } = Props;
+export const ButtonComponent = (Props: ButtonProps) => {
+    const { label, onClick, style } = Props;
 
-    return <button onClick={onClick}>{label}</button>;
+    return (
+        <Button
+            variant="contained"
+            onClick={onClick}
+            style={style}
+            className="button"
+        >
+            {label}
+        </Button>
+    );
 };
