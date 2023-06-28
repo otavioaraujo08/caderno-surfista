@@ -30,7 +30,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div className="gridTwo"></div>
+            <div className="gridTwo" />
         </div>
     );
 }
