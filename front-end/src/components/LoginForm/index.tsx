@@ -1,6 +1,9 @@
 'use client';
+import './styles.css';
+import { Typography, Box } from '@mui/material';
 import { useState } from 'react';
-import { Button } from '../Button';
+import { ButtonComponent } from '../Button';
+import { LoginUser } from './LoginUser';
 
 export const LoginForm = () => {
     const [createUser, setCreateUser] = useState(false);
@@ -12,24 +15,33 @@ export const LoginForm = () => {
     };
 
     return (
-        <div>
-            <h1>LoginForm</h1>
+        <Box className="boxForm">
+            {!userClicked && (
+                <>
+                    <ButtonComponent
+                        onClick={() => handleChangeStatus(true)}
+                        label="Login"
+                    />
 
-            <Button
-                onClick={() => handleChangeStatus(true)}
-                label="Criar usuário"
-            />
-
-            <Button
-                onClick={() => handleChangeStatus(false)}
-                label="Cadastrar"
-            />
+                    <ButtonComponent
+                        onClick={() => handleChangeStatus(false)}
+                        label="Cadastrar"
+                    />
+                </>
+            )}
 
             {userClicked && (
-                <div>
-                    {createUser ? <h1>Criar User</h1> : <h1>Cadastrar</h1>}
-                </div>
+                <>
+                    {createUser ? <LoginUser /> : <h1>Cadastrar</h1>}
+
+                    <Typography
+                        onClick={() => setUserClicked(false)}
+                        className="return"
+                    >
+                        Retornar
+                    </Typography>
+                </>
             )}
-        </div>
+        </Box>
     );
 };

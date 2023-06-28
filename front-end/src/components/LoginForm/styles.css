@@ -1,0 +1,21 @@
+.boxForm {
+    position: relative;
+    width: auto;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    border-radius: 5%;
+}
+
+.return {
+    color: #5c5c5c;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    text-decoration: underline;
+}
