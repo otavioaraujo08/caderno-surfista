@@ -20,7 +20,7 @@
 
 .boxLogo {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
 }
@@ -29,29 +29,13 @@
     border-radius: 50%;
 }
 
-.logoTitle {
-    font-size: 1.8rem;
-    color: #1b2021;
-    font-family: 'Karla', sans-serif;
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.logoSubtitle {
-    font-size: 1.4rem;
-    color: #30343f;
-    font-family: 'Karla', sans-serif;
-    font-weight: 500;
-    margin: 0;
-}
-
 .title,
 .subTitle {
     margin-left: 1.5rem;
 }
 
 .title {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     margin-bottom: 0;
     font-size: 2.4rem;
     letter-spacing: 0.2rem;
