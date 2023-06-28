@@ -1,5 +1,7 @@
-import Image from 'next/image';
+'use client';
 import './styles.css';
+import Image from 'next/image';
+import { Typography } from '@mui/material';
 import { LoginForm } from '@/components/LoginForm';
 
 export default function Page() {
@@ -14,26 +16,20 @@ export default function Page() {
                         height={160}
                         className="logo"
                     />
-
-                    <div
-                        style={{
-                            marginBottom: '1rem',
-                        }}
-                    >
-                        <h1 className="logoTitle">Go Surf</h1>
-                        <h3 className="logoSubtitle">Surfaremos juntos</h3>
-                    </div>
                 </div>
 
                 <div>
-                    <h1 className="title">Bem vindo de volta 😎</h1>
-                    <p className="subTitle">
-                        Como você gostaria de fazer login ?
-                    </p>
+                    <Typography align="center" className="title">
+                        Bem vindo de volta 😎
+                    </Typography>
+                    <Typography align="center" className="subTitle">
+                        Como você gostaria de fazer prosseguir ?
+                    </Typography>
 
                     <LoginForm />
                 </div>
             </div>
+
             <div className="gridTwo"></div>
         </div>
     );
