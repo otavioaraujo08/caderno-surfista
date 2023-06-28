@@ -1,0 +1,25 @@
+.boxForm {
+    gap: 1.2rem;
+}
+
+.formTitle {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #393953;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 1rem;
+}
+
+.boxInput {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #585757;
+    font-family: 'Roboto', sans-serif;
+}
