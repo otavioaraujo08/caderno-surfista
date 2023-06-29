@@ -3,11 +3,11 @@
 }
 
 .formTitle {
-    font-size: 2rem;
+    padding-top: 1rem;
+    font-size: 1.4rem;
     font-weight: 500;
     color: #393953;
     font-family: 'Roboto', sans-serif;
-    padding-bottom: 1rem;
 }
 
 .boxInput {
@@ -22,4 +22,13 @@
     font-weight: 400;
     color: #585757;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.return {
+    color: #5c5c5c;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
 }
