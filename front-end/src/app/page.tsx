@@ -23,7 +23,7 @@ export default function Page() {
                         Bem vindo de volta 😎
                     </Typography>
                     <Typography align="center" className="subTitle">
-                        Como você gostaria de fazer prosseguir ?
+                        Como você gostaria de prosseguir ?
                     </Typography>
 
                     <LoginForm />
