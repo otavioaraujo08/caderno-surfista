@@ -1,6 +1,6 @@
 'use client';
 import './styles.css';
-import { Typography, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from 'react';
 import { ButtonComponent } from '../Button';
 import { LoginUser } from './LoginUser';
@@ -32,14 +32,11 @@ export const LoginForm = () => {
 
             {userClicked && (
                 <>
-                    {createUser ? <LoginUser /> : <h1>Cadastrar</h1>}
-
-                    <Typography
-                        onClick={() => setUserClicked(false)}
-                        className="return"
-                    >
-                        Retornar
-                    </Typography>
+                    {createUser ? (
+                        <LoginUser setUserClicked={setUserClicked} />
+                    ) : (
+                        <h1>Cadastrar</h1>
+                    )}
                 </>
             )}
         </Box>
