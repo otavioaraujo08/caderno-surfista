@@ -1,11 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonComponent } from '@/components/Button';
 import './styles.css';
-import { Typography, Box, TextField, Alert } from '@mui/material';
+import { Typography, Box, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { loginSchema } from './schema';
-import { userService } from '@/services/user';
-import { AlertMessage } from '@/components/AlertMessage';
+import { authenticationService } from '@/services/authenticate';
+import { UsePopup } from '@/hooks/UsePopup';
 
 interface LoginFunctionProps {
     email: string;
@@ -17,6 +17,7 @@ interface LoginUserProps {
 }
 
 export const LoginUser = (props: LoginUserProps) => {
+    const { showAlert, PopupComponent } = UsePopup();
     const { setUserClicked } = props;
     const {
         register,
@@ -28,9 +29,9 @@ export const LoginUser = (props: LoginUserProps) => {
 
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
         try {
-            await userService.LoginUser(data);
+            await authenticationService.login(data);
         } catch (error: any) {
-            return <Alert>text=Usuário não encontrado</Alert>;
+            return showAlert('This is an example alert!', 'success');
         }
     };
 
@@ -82,6 +83,8 @@ export const LoginUser = (props: LoginUserProps) => {
             >
                 Retornar
             </Typography>
+
+            <PopupComponent />
         </Box>
     );
 };
