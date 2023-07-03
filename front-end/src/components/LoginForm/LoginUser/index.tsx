@@ -30,8 +30,18 @@ export const LoginUser = (props: LoginUserProps) => {
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
         try {
             await authenticationService.login(data);
+
+            return showAlert(
+                'Sucesso ao criar usuário',
+                'Usuário criado com sucesso',
+                'success'
+            );
         } catch (error: any) {
-            return showAlert('This is an example alert!', 'success');
+            return showAlert(
+                'Erro ao criar usuário',
+                'Usuário já cadastrado',
+                'error'
+            );
         }
     };
 
