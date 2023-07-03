@@ -6,7 +6,7 @@
 
 ## Stacks 🐙
 
-**Front-end:** Developing... 🕔
+**Front-end:** React, Next, Material UI ⚠️
 
 **Back-end:** Node, Express, Mongoose, Axios, Overnight 🔧
 
