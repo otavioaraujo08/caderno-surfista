@@ -1,0 +1,42 @@
+.icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.boxPopup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 22rem;
+    height: 5rem;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    transition: transform 2s ease-in-out;
+}
+
+.popupTitle {
+    width: calc(25rem - 10rem);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font: Roboto;
+    color: #000000d3;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.popupSubtitle {
+    width: calc(25rem - 10rem);
+    font-size: 0.9rem;
+    font-weight: 500;
+    font: Roboto;
+    color: #202020b0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
