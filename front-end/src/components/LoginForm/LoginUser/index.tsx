@@ -29,17 +29,25 @@ export const LoginUser = (props: LoginUserProps) => {
 
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
         try {
-            await authenticationService.login(data);
+            const response = await authenticationService.login(data);
 
             return showAlert(
-                'Sucesso ao criar usuário',
-                'Usuário criado com sucesso',
+                'Sucesso ao logar usuário',
+                'Usuário logado com sucesso',
                 'success'
             );
         } catch (error: any) {
+            if (error.message.includes('User not found!')) {
+                return showAlert(
+                    'Erro ao logar usuário',
+                    'Usuário não encontrado',
+                    'error'
+                );
+            }
+
             return showAlert(
-                'Erro ao criar usuário',
-                'Usuário já cadastrado',
+                'Erro ao logar usuário',
+                'Email ou senha incorretos',
                 'error'
             );
         }
