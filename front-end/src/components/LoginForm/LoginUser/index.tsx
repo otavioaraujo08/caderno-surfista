@@ -29,7 +29,7 @@ export const LoginUser = (props: LoginUserProps) => {
 
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
         try {
-            const response = await authenticationService.login(data);
+            await authenticationService.login(data);
 
             return showAlert(
                 'Sucesso ao logar usuário',
