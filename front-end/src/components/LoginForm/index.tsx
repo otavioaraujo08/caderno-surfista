@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { ButtonComponent } from '../Button';
 import { LoginUser } from './LoginUser';
+import { CreateUser } from './CreateUser';
 
 export const LoginForm = () => {
     const [createUser, setCreateUser] = useState(false);
@@ -35,7 +36,7 @@ export const LoginForm = () => {
                     {createUser ? (
                         <LoginUser setUserClicked={setUserClicked} />
                     ) : (
-                        <h1>Cadastrar</h1>
+                        <CreateUser setUserClicked={setUserClicked} />
                     )}
                 </>
             )}
