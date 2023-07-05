@@ -1,19 +1,12 @@
-import { UserLogin } from '@/interfaces/IUser';
-import axios from 'axios';
+import { UserRegister } from '@/interfaces/IUser';
+
+import { api as apiService, ApiService, defaultUrl } from './api';
 
 class UserService {
-    async LoginUser(params: UserLogin) {
-        const url = `localhost:3000/auth/login`;
+    constructor(private readonly api: ApiService) {}
 
-        axios
-            .get(url, { params })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    public register = async (register: UserRegister): Promise<void> => {
+        return this.api.post(`${defaultUrl}/users`, register);
+    };
 }
-
-export const userService = new UserService();
+export const userService = new UserService(apiService);
