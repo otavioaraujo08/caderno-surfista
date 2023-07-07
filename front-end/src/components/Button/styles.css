@@ -1,6 +1,7 @@
 .button {
-    width: 10rem;
-    height: 2.5rem;
+    width: auto;
+    min-width: 10rem;
+    height: 2.7rem;
     color: #ffffff;
     font-size: 0.9rem;
     font-weight: 400;
