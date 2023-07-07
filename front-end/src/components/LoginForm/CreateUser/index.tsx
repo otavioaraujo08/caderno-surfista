@@ -43,11 +43,11 @@ export const CreateUser = (props: CreateUserProps) => {
 
             handleToggleModal();
 
-            // return showAlert(
-            //     'Sucesso ao criar usuário',
-            //     'Usuário criado com sucesso',
-            //     'success'
-            // );
+            return showAlert(
+                'Sucesso ao criar usuário',
+                'Usuário criado com sucesso',
+                'success'
+            );
         } catch (error: any) {
             if (error.message.includes('already exists')) {
                 return showAlert(
@@ -127,14 +127,26 @@ export const CreateUser = (props: CreateUserProps) => {
             </Typography>
 
             <PopupComponent />
-            {/*
+
             <Modal
                 title="Cadastro concluído"
                 open={openModal}
                 onClose={handleToggleModal}
             >
-                <h1>ola mundo</h1>
-            </Modal> */}
+                <Typography className="auxiliarText">
+                    Seu cadastro foi realizado com sucesso, clique abaixo para
+                    redirecionar ao login
+                </Typography>
+
+                <ButtonComponent
+                    label="Redirecionar"
+                    type="submit"
+                    onClick={handleToggleModal}
+                    style={{
+                        marginTop: '20px',
+                    }}
+                />
+            </Modal>
         </Box>
     );
 };
