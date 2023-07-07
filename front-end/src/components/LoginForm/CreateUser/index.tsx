@@ -6,6 +6,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { createUserSchema } from './schema';
 import { UsePopup } from '@/hooks/UsePopup';
 import { userService } from '@/services/user';
+import { Modal } from '@/components/Modal';
+import { useState } from 'react';
 
 interface CreateUserFunctionProps {
     name: string;
@@ -18,6 +20,7 @@ interface CreateUserProps {
 }
 
 export const CreateUser = (props: CreateUserProps) => {
+    const [openModal, setOpenModal] = useState(false);
     const { showAlert, PopupComponent } = UsePopup();
     const { setUserClicked } = props;
     const {
@@ -28,17 +31,23 @@ export const CreateUser = (props: CreateUserProps) => {
         resolver: yupResolver(createUserSchema),
     });
 
+    const handleToggleModal = () => {
+        setOpenModal(!openModal);
+    };
+
     const handleCreateUser: SubmitHandler<CreateUserFunctionProps> = async (
         data
     ) => {
         try {
             await userService.register(data);
 
-            return showAlert(
-                'Sucesso ao criar usuário',
-                'Usuário criado com sucesso',
-                'success'
-            );
+            handleToggleModal();
+
+            // return showAlert(
+            //     'Sucesso ao criar usuário',
+            //     'Usuário criado com sucesso',
+            //     'success'
+            // );
         } catch (error: any) {
             if (error.message.includes('already exists')) {
                 return showAlert(
@@ -93,7 +102,7 @@ export const CreateUser = (props: CreateUserProps) => {
             <Box className="boxInput">
                 <label className="label">Senha</label>
                 <TextField
-                    type="string"
+                    type="password"
                     label="Digite sua senha"
                     variant="outlined"
                     {...register('password')}
@@ -118,6 +127,14 @@ export const CreateUser = (props: CreateUserProps) => {
             </Typography>
 
             <PopupComponent />
+            {/*
+            <Modal
+                title="Cadastro concluído"
+                open={openModal}
+                onClose={handleToggleModal}
+            >
+                <h1>ola mundo</h1>
+            </Modal> */}
         </Box>
     );
 };
