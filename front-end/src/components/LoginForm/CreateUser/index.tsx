@@ -35,6 +35,11 @@ export const CreateUser = (props: CreateUserProps) => {
         setOpenModal(!openModal);
     };
 
+    const handleRedirectUser = () => {
+        setUserClicked(false);
+        handleToggleModal();
+    };
+
     const handleCreateUser: SubmitHandler<CreateUserFunctionProps> = async (
         data
     ) => {
@@ -84,6 +89,7 @@ export const CreateUser = (props: CreateUserProps) => {
                     {...register('name')}
                     error={!!errors?.name}
                     helperText={errors?.name?.message}
+                    className="registerInput"
                 />
             </Box>
 
@@ -96,6 +102,7 @@ export const CreateUser = (props: CreateUserProps) => {
                     {...register('email')}
                     error={!!errors?.email}
                     helperText={errors?.email?.message}
+                    className="registerInput"
                 />
             </Box>
 
@@ -108,6 +115,7 @@ export const CreateUser = (props: CreateUserProps) => {
                     {...register('password')}
                     error={!!errors?.password}
                     helperText={errors?.password?.message}
+                    className="registerInput"
                 />
             </Box>
 
@@ -131,7 +139,7 @@ export const CreateUser = (props: CreateUserProps) => {
             <Modal
                 title="Cadastro concluído"
                 open={openModal}
-                onClose={handleToggleModal}
+                onClose={handleRedirectUser}
             >
                 <Typography className="auxiliarText">
                     Seu cadastro foi realizado com sucesso, clique abaixo para
@@ -141,7 +149,7 @@ export const CreateUser = (props: CreateUserProps) => {
                 <ButtonComponent
                     label="Redirecionar"
                     type="submit"
-                    onClick={handleToggleModal}
+                    onClick={handleRedirectUser}
                     style={{
                         marginTop: '20px',
                     }}
