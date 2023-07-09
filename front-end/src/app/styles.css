@@ -15,6 +15,10 @@
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    @media (max-width: 920px) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
 }
 
 .gridOne {
@@ -53,6 +57,12 @@
     font-family: 'Karla', sans-serif;
     font-weight: 600;
     color: #1b2021;
+    @media (max-width: 960px) {
+        font-size: 1.3rem;
+    }
+    @media (max-width: 550px) {
+        font-size: 1rem;
+    }
 }
 
 .subTitle {
@@ -60,4 +70,10 @@
     font-family: 'Karla', sans-serif;
     font-weight: 500;
     color: #525b5e;
+    @media (max-width: 960px) {
+        font-size: 1rem;
+    }
+    @media (max-width: 550px) {
+        font-size: 0.7rem;
+    }
 }
