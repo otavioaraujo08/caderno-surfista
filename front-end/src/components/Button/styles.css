@@ -6,4 +6,9 @@
     font-size: 0.9rem;
     font-weight: 400;
     letter-spacing: 0.1rem;
+    @media (max-width: 550px) {
+        font-size: 0.7rem;
+        min-width: 7.5rem;
+        font-weight: 600;
+    }
 }
