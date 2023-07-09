@@ -1,5 +1,8 @@
 .boxForm {
-    gap: 0.6rem;
+    gap: 1rem;
+    @media (max-width: 960px) {
+        gap: 0;
+    }
 }
 
 .formTitle {
@@ -8,12 +11,24 @@
     font-weight: 500;
     color: #393953;
     font-family: 'Roboto', sans-serif;
+    @media (max-width: 960px) {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+    @media (max-width: 550px) {
+        padding-top: 0;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+    }
 }
 
 .boxInput {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    @media (max-width: 960px) {
+        margin-bottom: 0.4rem;
+    }
 }
 
 .label {
@@ -23,6 +38,25 @@
     color: #585757;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 0.5rem;
+    @media (max-width: 960px) {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+    @media (max-width: 550px) {
+        margin-top: 0;
+        font-size: 0.9rem;
+    }
+}
+
+.registerInput {
+    min-width: 15rem;
+    width: 100%;
+    @media (max-width: 960px) {
+        min-width: 10rem;
+    }
+    @media (max-width: 550px) {
+        max-width: 8rem;
+    }
 }
 
 .return {
@@ -31,6 +65,10 @@
     font-weight: 500;
     cursor: pointer;
     text-decoration: underline;
+    @media (max-width: 960px) {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
 }
 
 .auxiliarText {
