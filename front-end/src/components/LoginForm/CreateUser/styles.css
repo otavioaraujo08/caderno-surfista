@@ -1,18 +1,20 @@
 .boxForm {
     gap: 1rem;
-    @media (max-width: 960px) {
+    @media (max-width: 1150px) {
         gap: 0;
+    }
+    @media (max-width: 960px) {
+        margin-top: 1.5rem;
     }
 }
 
 .formTitle {
-    padding-top: 1rem;
+    margin-top: 1rem;
     font-size: 1.4rem;
     font-weight: 500;
     color: #393953;
     font-family: 'Roboto', sans-serif;
-    @media (max-width: 960px) {
-        margin-top: 1rem;
+    @media (max-width: 1150px) {
         font-size: 1.2rem;
     }
     @media (max-width: 550px) {
@@ -78,4 +80,8 @@
     font-weight: 400;
     color: #585757;
     font-family: 'Roboto', sans-serif;
+    @media (max-width: 960px) {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
 }
