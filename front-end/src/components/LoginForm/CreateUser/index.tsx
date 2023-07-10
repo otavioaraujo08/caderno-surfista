@@ -83,7 +83,6 @@ export const CreateUser = (props: CreateUserProps) => {
             <Box className="boxInput">
                 <label className="label">Nome</label>
                 <TextField
-                    type="string"
                     label="Digite seu nome"
                     variant="outlined"
                     {...register('name')}
@@ -96,7 +95,6 @@ export const CreateUser = (props: CreateUserProps) => {
             <Box className="boxInput">
                 <label className="label">Email</label>
                 <TextField
-                    type="string"
                     label="Digite seu email"
                     variant="outlined"
                     {...register('email')}
