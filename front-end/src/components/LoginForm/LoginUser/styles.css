@@ -1,34 +1,55 @@
-.boxForm {
-    gap: 1.2rem;
-}
-
-.formTitle {
-    padding-top: 1rem;
+.formLoginUserTitle {
     font-size: 1.4rem;
     font-weight: 500;
     color: #393953;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 2rem;
+    @media (max-width: 1150px) {
+        font-size: 1.2rem;
+    }
 }
 
-.boxInput {
+.boxLoginUserInput {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.label {
+.labelLoginUser {
     text-align: left;
     font-size: 1.2rem;
     font-weight: 400;
     color: #585757;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
+    @media (max-width: 960px) {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+    @media (max-width: 550px) {
+        font-size: 0.9rem;
+    }
 }
 
-.return {
+.textFieldLoginUser {
+    min-width: 15rem;
+    width: 100%;
+    @media (max-width: 960px) {
+        min-width: 10rem;
+    }
+    @media (max-width: 550px) {
+        max-width: 8rem;
+    }
+}
+
+.returnLoginUser {
     color: #5c5c5c;
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     text-decoration: underline;
+    margin-top: 0.5rem;
+    @media (max-width: 960px) {
+        font-size: 1rem;
+    }
 }

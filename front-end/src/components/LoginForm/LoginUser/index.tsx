@@ -54,36 +54,33 @@ export const LoginUser = (props: LoginUserProps) => {
     };
 
     return (
-        <Box
-            className="boxForm"
-            component="form"
-            onSubmit={handleSubmit(handleLogin)}
-        >
-            <Typography align="center" className="formTitle">
+        <Box component="form" onSubmit={handleSubmit(handleLogin)}>
+            <Typography align="center" className="formLoginUserTitle">
                 Realizar login
             </Typography>
 
-            <Box className="boxInput">
-                <label className="label">Email</label>
+            <Box className="boxLoginUserInput">
+                <label className="labelLoginUser">Email</label>
                 <TextField
-                    type="string"
                     label="Digite seu email"
                     variant="outlined"
                     {...register('email')}
                     error={!!errors?.email}
                     helperText={errors?.email?.message}
+                    className="textFieldLoginUser"
                 />
             </Box>
 
-            <Box className="boxInput">
-                <label className="label">Senha</label>
+            <Box className="boxLoginUserInput">
+                <label className="labelLoginUser">Senha</label>
                 <TextField
-                    type="string"
+                    type="password"
                     label="Digite sua senha"
                     variant="outlined"
                     {...register('password')}
                     error={!!errors?.password}
                     helperText={errors?.password?.message}
+                    className="textFieldLoginUser"
                 />
             </Box>
 
@@ -97,7 +94,7 @@ export const LoginUser = (props: LoginUserProps) => {
 
             <Typography
                 onClick={() => setUserClicked(false)}
-                className="return"
+                className="returnLoginUser"
             >
                 Retornar
             </Typography>
