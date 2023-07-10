@@ -1,11 +1,13 @@
+'use client';
+import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonComponent } from '@/components/Button';
-import './styles.css';
 import { Typography, Box, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { loginSchema } from './schema';
 import { authenticationService } from '@/services/authenticate';
 import { UsePopup } from '@/hooks/UsePopup';
+import './styles.css';
 
 interface LoginFunctionProps {
     email: string;
@@ -26,10 +28,17 @@ export const LoginUser = (props: LoginUserProps) => {
     } = useForm({
         resolver: yupResolver(loginSchema),
     });
+    const router = useRouter();
+
+    const redirectUser = () => {
+        return router.push('/dashboard');
+    };
 
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
         try {
             await authenticationService.login(data);
+
+            redirectUser();
 
             return showAlert(
                 'Sucesso ao logar usuário',
