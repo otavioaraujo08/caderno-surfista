@@ -46,7 +46,7 @@ export const LoginUser = (props: LoginUserProps) => {
                 'success'
             );
         } catch (error: any) {
-            if (error.message.includes('User not found!')) {
+            if (error.message?.includes('User not found!')) {
                 return showAlert(
                     'Erro ao logar usuário',
                     'Usuário não encontrado',
