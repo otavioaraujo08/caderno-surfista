@@ -54,7 +54,7 @@ export const CreateUser = (props: CreateUserProps) => {
                 'success'
             );
         } catch (error: any) {
-            if (error.message.includes('already exists')) {
+            if (error.message?.includes('already exists')) {
                 return showAlert(
                     'Erro ao criar usuário',
                     'Email já cadastrado',
