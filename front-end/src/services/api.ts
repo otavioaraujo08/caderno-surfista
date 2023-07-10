@@ -30,7 +30,6 @@ export class ApiService {
             .post(url, params, config)
             .then((x) => x.data)
             .catch((err) => {
-                console.log(err);
                 if (err?.message === 'Network Error')
                     throw new Error('Network Error');
                 if (axios.isAxiosError(err)) throw err.response?.data;
