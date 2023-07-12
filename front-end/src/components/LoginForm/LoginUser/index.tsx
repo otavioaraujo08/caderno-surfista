@@ -31,7 +31,7 @@ export const LoginUser = (props: LoginUserProps) => {
     const router = useRouter();
 
     const redirectUser = () => {
-        return router.push('/dashboard');
+        return router.push('/home/dashboard');
     };
 
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
