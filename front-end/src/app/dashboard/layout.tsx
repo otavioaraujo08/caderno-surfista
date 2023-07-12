@@ -1,15 +1,19 @@
+'use client';
+import { Sidebar } from '@/components/Sidebar';
+import { Box } from '@mui/material';
+
 export default function DashboardLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
     return (
-        <section>
-            <nav>Ola</nav>
-            <nav>Mundo</nav>
-            <nav>Do Next</nav>
+        <Box>
+            <Box>
+                <Sidebar />
+            </Box>
 
-            {children}
-        </section>
+            <Box>{children}</Box>
+        </Box>
     );
 }
