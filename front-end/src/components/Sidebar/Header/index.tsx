@@ -22,9 +22,9 @@ export const Header = (props: HeaderProps) => {
             />
 
             <Box>
-                <StyledTitle>{name}</StyledTitle>
+                <StyledTitle>{name || 'Year Zero'}</StyledTitle>
 
-                <StyledSubtitle>{title}</StyledSubtitle>
+                <StyledSubtitle>{title || 'Caster VI'}</StyledSubtitle>
             </Box>
         </StyledHeader>
     );
