@@ -6,8 +6,11 @@ import { Typography, Box, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { loginSchema } from './schema';
 import { authenticationService } from '@/services/authenticate';
+import { logIn } from '@/redux/features/auth';
+import { useDispatch } from 'react-redux';
 import { UsePopup } from '@/hooks/UsePopup';
 import './styles.css';
+import { AppDispatch } from '@/redux/store';
 
 interface LoginFunctionProps {
     email: string;
@@ -29,6 +32,7 @@ export const LoginUser = (props: LoginUserProps) => {
         resolver: yupResolver(loginSchema),
     });
     const router = useRouter();
+    const dispatch = useDispatch<AppDispatch>();
 
     const redirectUser = () => {
         return router.push('/home/dashboard');
@@ -38,6 +42,11 @@ export const LoginUser = (props: LoginUserProps) => {
         try {
             await authenticationService.login(data);
 
+            dispatch(
+                logIn({
+                    username: 'potato',
+                })
+            );
             redirectUser();
 
             return showAlert(
