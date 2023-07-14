@@ -25,6 +25,11 @@ export const menuItems: MenuItem[] = [
                 path: '/beach',
                 icon: <FiLoader />,
             },
+            {
+                title: 'Usuários',
+                path: '/users',
+                icon: <FiLoader />,
+            },
         ],
     },
 ];
