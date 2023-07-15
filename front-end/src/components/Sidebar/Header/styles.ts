@@ -4,8 +4,8 @@ import { Box, Avatar, Typography } from '@mui/material';
 export const StyledHeader = styled(Box)`
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 1.5rem 0;
+    justify-content: left;
+    margin: 1.5rem 2rem;
     gap: 1rem;
 `;
 
