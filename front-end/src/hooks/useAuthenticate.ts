@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { logIn } from '@/redux/features/auth';
+import { authReducer, logIn } from '@/redux/features/auth';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { userService } from '@/services/user';
@@ -17,8 +17,12 @@ export default function useAuthenticate() {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
 
-    const redirectUser = () => {
+    const redirectUserToDashboard = () => {
         return router.push('/home/dashboard');
+    };
+
+    const redirectUserToLogin = () => {
+        return router.push('../');
     };
 
     const setupUser = ({ username, token }: SetupUserProps) => {
@@ -29,7 +33,7 @@ export default function useAuthenticate() {
             })
         );
 
-        return redirectUser();
+        return redirectUserToDashboard();
     };
 
     const getUserByEmail = async ({ token, email }: GetUserByEmailProps) => {
@@ -41,7 +45,14 @@ export default function useAuthenticate() {
         });
     };
 
+    const handleLogOut = () => {
+        dispatch(authReducer.actions.logOut());
+
+        return redirectUserToLogin();
+    };
+
     return {
         getUserByEmail,
+        handleLogOut,
     };
 }
