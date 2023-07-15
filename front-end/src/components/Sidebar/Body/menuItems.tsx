@@ -1,4 +1,4 @@
-import { FiActivity, FiLoader } from 'react-icons/fi';
+import { FiActivity, FiLoader, FiUser } from 'react-icons/fi';
 
 interface MenuChildren {
     title: string;
@@ -28,7 +28,7 @@ export const menuItems: MenuItem[] = [
             {
                 title: 'Usuários',
                 path: '/users',
-                icon: <FiLoader />,
+                icon: <FiUser />,
             },
         ],
     },
