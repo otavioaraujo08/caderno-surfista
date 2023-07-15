@@ -1,10 +1,12 @@
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import {
     StyledAvatar,
     StyledHeader,
     StyledSubtitle,
     StyledTitle,
 } from './styles';
+import { BiExit } from 'react-icons/bi';
+import useAuthenticate from '@/hooks/useAuthenticate';
 
 interface HeaderProps {
     name: string;
@@ -13,6 +15,7 @@ interface HeaderProps {
 
 export const Header = (props: HeaderProps) => {
     const { name, title } = props;
+    const { handleLogOut } = useAuthenticate();
 
     return (
         <StyledHeader>
@@ -26,6 +29,15 @@ export const Header = (props: HeaderProps) => {
 
                 <StyledSubtitle>{title || 'Caster VI'}</StyledSubtitle>
             </Box>
+
+            <IconButton onClick={handleLogOut}>
+                <BiExit
+                    size="1.5rem"
+                    style={{
+                        color: '#262626',
+                    }}
+                />
+            </IconButton>
         </StyledHeader>
     );
 };
