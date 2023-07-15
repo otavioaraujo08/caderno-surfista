@@ -10,6 +10,8 @@ type InitialStateValues = {
     value: AuthState;
 };
 
+const randomTitles = ['Time Traveller', 'Time Lord', 'Time Master'];
+
 const initialState: InitialStateValues = {
     value: {
         token: '',
@@ -25,12 +27,17 @@ export const authReducer = createSlice({
         logOut: () => {
             return initialState;
         },
-        logIn: (state, action: PayloadAction<{ username: string }>) => {
+        logIn: (
+            _,
+            action: PayloadAction<{ username: string; token: string }>
+        ) => {
             return {
                 value: {
-                    token: '123',
+                    token: action.payload.token,
                     username: action.payload.username,
-                    title: 'Time Traveller',
+                    title: randomTitles[
+                        Math.floor(Math.random() * randomTitles.length)
+                    ],
                 },
             };
         },
