@@ -1,16 +1,13 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonComponent } from '@/components/Button';
 import { Typography, Box, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { loginSchema } from './schema';
 import { authenticationService } from '@/services/authenticate';
-import { logIn } from '@/redux/features/auth';
-import { useDispatch } from 'react-redux';
+import useAuthenticate from '@/hooks/useAuthenticate';
 import { UsePopup } from '@/hooks/UsePopup';
 import './styles.css';
-import { AppDispatch } from '@/redux/store';
 
 interface LoginFunctionProps {
     email: string;
@@ -23,6 +20,7 @@ interface LoginUserProps {
 
 export const LoginUser = (props: LoginUserProps) => {
     const { showAlert, PopupComponent } = UsePopup();
+    const { getUserByEmail } = useAuthenticate();
     const { setUserClicked } = props;
     const {
         register,
@@ -31,23 +29,12 @@ export const LoginUser = (props: LoginUserProps) => {
     } = useForm({
         resolver: yupResolver(loginSchema),
     });
-    const router = useRouter();
-    const dispatch = useDispatch<AppDispatch>();
-
-    const redirectUser = () => {
-        return router.push('/home/dashboard');
-    };
 
     const handleLogin: SubmitHandler<LoginFunctionProps> = async (data) => {
         try {
-            await authenticationService.login(data);
-
-            dispatch(
-                logIn({
-                    username: 'potato',
-                })
-            );
-            redirectUser();
+            const { email } = data;
+            const { token } = await authenticationService.login(data);
+            getUserByEmail({ token, email });
 
             return showAlert(
                 'Sucesso ao logar usuário',
