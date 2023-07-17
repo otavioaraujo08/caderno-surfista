@@ -8,7 +8,7 @@
         "start": "npm run build && node dist/src/index.js --watch",
         "lint": "eslint ./src ./test --ext .ts",
         "start:dev": "ts-node-dev './src/index.ts'",
-        "start:local": "ts-node-dev --transpile-only src/index.ts  | pino-pretty -c",
+        "start:local": "ts-node-dev --transpile-only src/index.ts  | pino-pretty -c --watch",
         "lint:fix": "eslint ./src ./test --ext .ts --fix",
         "test": "npm run test:unit && npm run test:functional",
         "test:functional": "jest --projects ./test --runInBand",
