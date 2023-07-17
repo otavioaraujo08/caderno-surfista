@@ -52,6 +52,7 @@ export default function useAuthenticate() {
     };
 
     return {
+        redirectUserToLogin,
         getUserByEmail,
         handleLogOut,
     };
