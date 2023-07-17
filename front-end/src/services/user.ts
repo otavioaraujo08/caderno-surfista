@@ -2,7 +2,7 @@ import { UserRegister } from '@/interfaces/IUser';
 
 import { api as apiService, ApiService, defaultUrl } from './api';
 
-interface getUserInfosResponse {
+export interface getUserInfosResponse {
     name: string;
     email: string;
 }
@@ -10,7 +10,7 @@ interface getUserInfosResponse {
 class UserService {
     constructor(private readonly api: ApiService) {}
 
-    public getUsers = async (): Promise<void> => {
+    public getUsers = async (): Promise<getUserInfosResponse[]> => {
         return this.api.get(`${defaultUrl}/users`);
     };
 
