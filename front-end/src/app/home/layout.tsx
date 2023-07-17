@@ -1,6 +1,8 @@
 'use client';
 import './styles.css';
 import { Sidebar } from '@/components/Sidebar';
+import { NotFoundPage } from '@/pgaes/NotFoundPage';
+import { useAppSelector } from '@/redux/store';
 import { Box } from '@mui/material';
 
 export default function DashboardLayout({
@@ -8,7 +10,9 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return (
+    const { username } = useAppSelector((state) => state.authReducer.value);
+
+    return username ? (
         <Box className="parentSidebar">
             <Box className="sidebarSideGrid">
                 <Sidebar />
@@ -16,5 +20,7 @@ export default function DashboardLayout({
 
             <Box className="contentSideGrid">{children}</Box>
         </Box>
+    ) : (
+        <NotFoundPage />
     );
 }
