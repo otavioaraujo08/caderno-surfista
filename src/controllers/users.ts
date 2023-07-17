@@ -19,7 +19,7 @@ export class UsersController extends BaseController {
 
             const users = await User.find(query);
 
-            res.status(200).send(users[0]);
+            res.status(200).send(email ? users[0] : users);
         } catch (error: any) {
             res.status(500).send({ error: 'Internal Server Error' });
         }
