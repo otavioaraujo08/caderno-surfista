@@ -1,7 +1,7 @@
 'use client';
 import './styles.css';
 import { Sidebar } from '@/components/Sidebar';
-import { NotFoundPage } from '@/pgaes/NotFoundPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 import { useAppSelector } from '@/redux/store';
 import { Box } from '@mui/material';
 
