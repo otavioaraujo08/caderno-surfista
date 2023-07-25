@@ -26,29 +26,41 @@ export default function useAuthenticate() {
     };
 
     const setupUser = ({ username, token }: SetupUserProps) => {
-        dispatch(
-            logIn({
-                username,
-                token,
-            })
-        );
+        try {
+            dispatch(
+                logIn({
+                    username,
+                    token,
+                })
+            );
 
-        return redirectUserToDashboard();
+            return redirectUserToDashboard();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const getUserByEmail = async ({ token, email }: GetUserByEmailProps) => {
-        const { name } = await userService.getUserInfos(email);
+        try {
+            const { name } = await userService.getUserInfos(email);
 
-        return setupUser({
-            username: name,
-            token,
-        });
+            return setupUser({
+                username: name,
+                token,
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleLogOut = () => {
-        dispatch(authReducer.actions.logOut());
+        try {
+            dispatch(authReducer.actions.logOut());
 
-        return redirectUserToLogin();
+            return redirectUserToLogin();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return {
