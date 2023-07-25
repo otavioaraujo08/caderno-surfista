@@ -11,6 +11,8 @@ import {
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Fab } from '@mui/material';
+import { IoAddCircleOutline } from 'react-icons/io5';
 
 export const Body = () => {
     const router = useRouter();
@@ -68,6 +70,10 @@ export const Body = () => {
                     </>
                 );
             })}
+
+            <Fab color="primary" aria-label="add">
+                <IoAddCircleOutline />
+            </Fab>
         </Container>
     );
 };
